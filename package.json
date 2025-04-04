@@ -1,0 +1,56 @@
+{
+  "name": "mcp",
+  "version": "1.0.0",
+  "main": "./src/main.ts",
+  "scripts": {
+    "dev": "npx ts-node -r tsconfig-paths/register ./src/main.ts",
+    "build": "tsc"
+  },
+  "bin": {
+    "weather": "./build/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.29.0",
+    "@meteora-ag/dlmm": "^1.4.11",
+    "@modelcontextprotocol/sdk": "^1.8.0",
+    "@orca-so/common-sdk": "^0.6.11",
+    "@orca-so/whirlpools-sdk": "^0.13.19",
+    "@raydium-io/raydium-sdk-v2": "0.1.118-alpha",
+    "@solana/spl-token": "^0.4.13",
+    "@solana/web3.js": "^1.98.0",
+    "@wormhole-foundation/sdk": "^1.14.0",
+    "axios": "^1.8.4",
+    "bs58": "^6.0.0",
+    "decimal.js": "^10.5.0",
+    "dotenv": "^16.4.7",
+    "envalid": "^8.0.0",
+    "execa": "^9.5.2",
+    "express": "^5.1.0",
+    "file-type": "^20.4.1",
+    "fuse.js": "^7.1.0",
+    "helmet": "^8.1.0",
+    "http-status-code": "^2.1.0",
+    "joi": "^17.13.3",
+    "mcp-proxy": "^2.12.0",
+    "passport": "^0.7.0",
+    "strict-event-emitter-types": "^2.0.0",
+    "undici": "^7.6.0",
+    "uri-templates": "^0.2.0",
+    "yargs": "^17.7.2",
+    "zod": "^3.24.2",
+    "zod-to-json-schema": "^3.24.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/helmet": "^4.0.0",
+    "@types/node": "^22.13.14",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.2"
+  },
+  "packageManager": "npm@11.2.0+sha512.3dc9c50ba813a3d54393155a435fe66404b72685ab0e3008f9ae9ed8d81f6104860f07ed2656dd5748c1322d95f3140fa9b19c59a6bba7750fd12285f81866da"
+}
