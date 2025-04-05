@@ -1,7 +1,16 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { RaydiumCreateAmmV4Tool, RaydiumCreateAmmV4ToolParams } from "src/tools/raydium/createAmmV4";
-import { RaydiumCreateClmmTool, RaydiumCreateClmmToolParams } from "src/tools/raydium/createClmm";
-import { RaydiumCreateCpmmTool, RaydiumCreateCpmmToolParams } from "src/tools/raydium/createCpmm";
+import {
+  RaydiumCreateAmmV4Tool,
+  RaydiumCreateAmmV4ToolParams,
+} from "../tools/raydium/createAmmV4";
+import {
+  RaydiumCreateClmmTool,
+  RaydiumCreateClmmToolParams,
+} from "../tools/raydium/createClmm";
+import {
+  RaydiumCreateCpmmTool,
+  RaydiumCreateCpmmToolParams,
+} from "../tools/raydium/createCpmm";
 
 export const createRaydiumMcpServer = () => {
   const server = new McpServer({

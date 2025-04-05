@@ -1,14 +1,20 @@
-import { bs58 } from '@coral-xyz/anchor/dist/cjs/utils/bytes';
-import { Connection, Keypair, TransactionInstruction, TransactionMessage, VersionedTransaction } from '@solana/web3.js';
-import axios from 'axios';
-import { RPC_URL } from 'src/constants/rpc';
-import { ENV } from 'src/env';
-import { LULO_API_URI } from 'src/constants/lulo';
-import { z } from 'zod';
+import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import {
+  Connection,
+  Keypair,
+  TransactionInstruction,
+  TransactionMessage,
+  VersionedTransaction,
+} from "@solana/web3.js";
+import axios from "axios";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
+import { LULO_API_URI } from "../../constants/lulo";
+import { z } from "zod";
 
 export const LuloGetPoolsTool = {
-  name: 'LULO_GET_POOLS',
-  description: 'Get Lulo pools',
+  name: "LULO_GET_POOLS",
+  description: "Get Lulo pools",
   parameters: {},
   execute: async () => {
     return await lulo_get_pools();
@@ -21,14 +27,12 @@ export async function lulo_get_pools(): Promise<LuloPoolData> {
       baseURL: LULO_API_URI,
     });
 
-    const response = await client.get(`/v1/pool.getPools`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': ENV.LULO_API_KEY ?? '',
-        },
+    const response = await client.get(`/v1/pool.getPools`, {
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": ENV.LULO_API_KEY ?? "",
       },
-    );
+    });
 
     const result = response.data;
     return result;

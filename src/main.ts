@@ -1,13 +1,13 @@
 import express from "express";
 import { Application } from "express";
 import helmet from "helmet";
-import { ENV } from "src/env";
+import { ENV } from "./env";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import dotenv from "dotenv";
-import { createSanctumMcpServer } from "src//mcp/sanctum";
-import { createWormholeMcpServer } from "src/mcp/wormhole";
-import { createSolanaMcpServer } from "src/mcp/solana";
-import { createOrcaMcpServer } from "src/mcp/orca";
+import { createSanctumMcpServer } from "./mcp/sanctum";
+import { createWormholeMcpServer } from "./mcp/wormhole";
+import { createSolanaMcpServer } from "./mcp/solana";
+import { createOrcaMcpServer } from "./mcp/orca";
 
 dotenv.config();
 

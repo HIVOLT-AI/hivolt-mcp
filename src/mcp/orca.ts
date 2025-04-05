@@ -1,22 +1,22 @@
 import {
   OrcaCreateClmmTool,
   OrcaCreateClmmToolParams,
-} from "src/tools/orca/createClmm";
-import { OrcaOpenSingleSidePositionToolParams } from "./../tools/orca/openSingleSidePosition";
+} from "../tools/orca/createClmm";
+import { OrcaOpenSingleSidePositionToolParams } from "../tools/orca/openSingleSidePosition";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import {
   OrcaGetPositionTool,
   OrcaGetPositionToolParams,
-} from "src/tools/orca/getPosition";
+} from "../tools/orca/getPosition";
 import {
   OrcaOpenCenterPositionTool,
   OrcaOpenCenterPositionToolParams,
-} from "src/tools/orca/openCenterPosition";
-import { OrcaOpenSingleSidePositionTool } from "src/tools/orca/openSingleSidePosition";
+} from "../tools/orca/openCenterPosition";
+import { OrcaOpenSingleSidePositionTool } from "../tools/orca/openSingleSidePosition";
 import {
   OrcaClosePositionTool,
   OrcaClosePositionToolParams,
-} from "src/tools/orca/closePosition";
+} from "../tools/orca/closePosition";
 
 export const createOrcaMcpServer = () => {
   const server = new McpServer({

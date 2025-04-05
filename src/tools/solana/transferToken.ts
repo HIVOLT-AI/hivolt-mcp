@@ -6,11 +6,11 @@ import {
   getMint,
 } from "@solana/spl-token";
 import { Connection, Keypair, PublicKey, Transaction } from "@solana/web3.js";
-import { NetworkSchema } from "src/types/chain";
+import { NetworkSchema } from "../../types/chain";
 import { z } from "zod";
 import bs58 from "bs58";
-import { ENV } from "src/env";
-import { RPC_URL } from "src/constants/rpc";
+import { ENV } from "../../env";
+import { RPC_URL } from "../../constants/rpc";
 
 const SolanaTransferTokenToolParams = z.object({
   to: z.string(),

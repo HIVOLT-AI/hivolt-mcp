@@ -1,18 +1,18 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { SolanaGetBalanceTool } from "src/tools/solana/getBalance";
-import { SolanaGetOwnedTokenTool } from "src/tools/solana/getOwnedToken";
+import { SolanaGetBalanceTool } from "../tools/solana/getBalance";
+import { SolanaGetOwnedTokenTool } from "../tools/solana/getOwnedToken";
 import {
   SolanaGetTokenBalanceTool,
   SolanaGetTokenBalanceToolParams,
-} from "src/tools/solana/getTokenBalance";
+} from "../tools/solana/getTokenBalance";
 import {
   SolanaTransferTool,
   SolanaTransferToolParams,
-} from "src/tools/solana/transfer";
+} from "../tools/solana/transfer";
 import {
   SolanaTransferTokenTool,
   SolanaTransferTokenToolParams,
-} from "src/tools/solana/transferToken";
+} from "../tools/solana/transferToken";
 
 export const createSolanaMcpServer = () => {
   const server = new McpServer({

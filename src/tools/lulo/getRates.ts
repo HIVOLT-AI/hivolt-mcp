@@ -1,10 +1,10 @@
-import axios from 'axios';
-import { ENV } from 'src/env';
-import { LULO_API_URI } from 'src/constants/lulo';
+import axios from "axios";
+import { ENV } from "../../env";
+import { LULO_API_URI } from "../../constants/lulo";
 
 export const LuloGetRatesTool = {
-  name: 'LULO_GET_RATES',
-  description: 'Get Lulo rates',
+  name: "LULO_GET_RATES",
+  description: "Get Lulo rates",
   parameters: {},
   execute: async () => {
     return await lulo_get_rates();
@@ -17,14 +17,12 @@ export async function lulo_get_rates(): Promise<LuloRateData> {
       baseURL: LULO_API_URI,
     });
 
-    const response = await client.get(`/v1/rates.getRates`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': ENV.LULO_API_KEY ?? '',
-        },
+    const response = await client.get(`/v1/rates.getRates`, {
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": ENV.LULO_API_KEY ?? "",
       },
-    );
+    });
 
     const result = response.data;
     return result;

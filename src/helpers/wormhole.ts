@@ -14,9 +14,9 @@ import {
 } from "@wormhole-foundation/sdk";
 import evm from "@wormhole-foundation/sdk/evm";
 import solana from "@wormhole-foundation/sdk/solana";
-import { ENV } from "src/env";
-import { NetworkType } from "src/types/chain";
-import { CreateWrappedTokenResponse } from "src/types/wormhole";
+import { ENV } from "../env";
+import { NetworkType } from "../types/chain";
+import { CreateWrappedTokenResponse } from "../types/wormhole";
 
 export async function getSigner<N extends Network, C extends Chain>(
   chain: ChainContext<N, C>,

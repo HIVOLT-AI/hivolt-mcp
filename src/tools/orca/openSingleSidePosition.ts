@@ -9,8 +9,8 @@ import {
 } from "@orca-so/whirlpools-sdk";
 import { z } from "zod";
 import bs58 from "bs58";
-import { ENV } from "src/env";
-import { RPC_URL } from "src/constants/rpc";
+import { ENV } from "../../env";
+import { RPC_URL } from "../../constants/rpc";
 import {
   Connection,
   Keypair,

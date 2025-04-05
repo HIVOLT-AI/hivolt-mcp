@@ -1,19 +1,29 @@
-import { bs58 } from '@coral-xyz/anchor/dist/cjs/utils/bytes';
-import { Connection, Keypair, PublicKey, TransactionMessage, VersionedTransaction } from '@solana/web3.js';
-import { RPC_URL } from 'src/constants/rpc';
-import { ENV } from 'src/env';
-import { z } from 'zod';
-import { BN } from '@coral-xyz/anchor';
-import { CLMM_PROGRAM_ID, Raydium, TxVersion } from '@raydium-io/raydium-sdk-v2';
+import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import {
+  Connection,
+  Keypair,
+  PublicKey,
+  TransactionMessage,
+  VersionedTransaction,
+} from "@solana/web3.js";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
+import { z } from "zod";
+import { BN } from "@coral-xyz/anchor";
+import {
+  CLMM_PROGRAM_ID,
+  Raydium,
+  TxVersion,
+} from "@raydium-io/raydium-sdk-v2";
 import {
   AMM_V4,
   FEE_DESTINATION_ID,
   MARKET_STATE_LAYOUT_V3,
   OPEN_BOOK_PROGRAM,
 } from "@raydium-io/raydium-sdk-v2";
-import { MintLayout } from '@solana/spl-token';
-import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
-import Decimal from 'decimal.js';
+import { MintLayout } from "@solana/spl-token";
+import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import Decimal from "decimal.js";
 
 const RaydiumCreateClmmToolParams = z.object({
   mint1: z.string(),
@@ -28,8 +38,8 @@ export type RaydiumCreateClmmToolParams = z.infer<
 >;
 
 export const RaydiumCreateClmmTool = {
-  name: 'RAYDIUM_CREATE_CLMM',
-  description: 'Create CLMM pool',
+  name: "RAYDIUM_CREATE_CLMM",
+  description: "Create CLMM pool",
   parameters: {
     mint1: z.string(),
     mint2: z.string(),
@@ -49,7 +59,7 @@ export const RaydiumCreateClmmTool = {
       new PublicKey(input.mint2),
       new PublicKey(input.configId),
       new Decimal(input.initialPrice),
-      new BN(input.startTime),
+      new BN(input.startTime)
     );
   },
 };
@@ -61,7 +71,7 @@ export async function raydium_create_clmm(
   mint2: PublicKey,
   configId: PublicKey, // V4 CLMM Config ID: 6J2X5j8iGUE9rPpy8h52u9dfy85vPMU8aF4D2KYfrc4h
   initialPrice: Decimal,
-  startTime: BN,
+  startTime: BN
 ): Promise<{ txId: string }> {
   try {
     const raydium = await Raydium.load({
@@ -69,9 +79,10 @@ export async function raydium_create_clmm(
       connection,
     });
 
-    const [mintInfo1, mintInfo2] = await connection.getMultipleAccountsInfo(
-      [mint1, mint2],
-    );
+    const [mintInfo1, mintInfo2] = await connection.getMultipleAccountsInfo([
+      mint1,
+      mint2,
+    ]);
     if (mintInfo1 === null || mintInfo2 === null) {
       throw Error("fetch mint info error");
     }

@@ -1,4 +1,4 @@
-import { ENV } from "src/env";
+import { ENV } from "../env";
 
 export const RPC_URL: Record<string, string> = {
   DEFAULT: "https://api.mainnet-beta.solana.com",

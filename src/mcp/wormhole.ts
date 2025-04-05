@@ -2,11 +2,11 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import {
   WormholeCreateWrappedTokenTool,
   WormholeCreateWrappedTokenToolParams,
-} from "src/tools/wormhole/createWrappedToken";
+} from "../tools/wormhole/createWrappedToken";
 import {
   WormholeTransferTokenTool,
   WormholeTransferTokenToolParams,
-} from "src/tools/wormhole/transferToken";
+} from "../tools/wormhole/transferToken";
 
 export const createWormholeMcpServer = () => {
   const server = new McpServer({

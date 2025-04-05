@@ -1,27 +1,22 @@
-
 import axios from "axios";
-import { SOLAYER_API_URI } from "src/constants/solayer";
+import { SOLAYER_API_URI } from "../../constants/solayer";
 
 export const SolayerGetInfoTool = {
   name: "SOLAYER_GET_INFO",
-  description:
-    "Get info of Solayer.",
-  parameters: {
-  },
+  description: "Get info of Solayer.",
+  parameters: {},
   execute: async () => {
     try {
       const client = axios.create({
         baseURL: SOLAYER_API_URI,
       });
-  
-      const response = await client.get(`/api/info`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
+
+      const response = await client.get(`/api/info`, {
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
-  
+      });
+
       const result = response.data as SolayerInfoResponse;
       return result;
     } catch (error: any) {

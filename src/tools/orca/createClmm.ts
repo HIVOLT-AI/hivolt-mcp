@@ -14,11 +14,11 @@ import {
   VersionedTransaction,
 } from "@solana/web3.js";
 import bs58 from "bs58";
-import { RPC_URL } from "src/constants/rpc";
-import { ENV } from "src/env";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
 import { z } from "zod";
 import { Decimal } from "decimal.js";
-import { ORCA_FEE_TIER } from "src/constants/orca";
+import { ORCA_FEE_TIER } from "../../constants/orca";
 
 const OrcaCreateClmmToolParams = z.object({
   mint: z.string(),

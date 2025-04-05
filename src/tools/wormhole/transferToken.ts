@@ -14,8 +14,8 @@ import {
   getSigner,
   getTokenDecimals,
   isTokenWrapped,
-} from "src/helpers/wormhole";
-import { ChainSchema, NetworkSchema } from "src/types/chain";
+} from "../../helpers/wormhole";
+import { ChainSchema, NetworkSchema } from "../../types/chain";
 import { z } from "zod";
 
 const WormholeTransferTokenToolParams = z.object({

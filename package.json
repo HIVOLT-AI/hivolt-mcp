@@ -4,7 +4,8 @@
   "main": "./src/main.ts",
   "scripts": {
     "dev": "npx ts-node -r tsconfig-paths/register ./src/main.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "start:prod": "node ./build/main.js"
   },
   "bin": {
     "weather": "./build/main.js"

@@ -1,14 +1,25 @@
-import { bs58 } from '@coral-xyz/anchor/dist/cjs/utils/bytes';
-import { Connection, Keypair, PublicKey, TransactionMessage, VersionedTransaction } from '@solana/web3.js';
-import { RPC_URL } from 'src/constants/rpc';
-import { ENV } from 'src/env';
-import { z } from 'zod';
-import { BN } from '@coral-xyz/anchor';
-import { CREATE_CPMM_POOL_FEE_ACC, CREATE_CPMM_POOL_PROGRAM, Raydium, TxVersion } from '@raydium-io/raydium-sdk-v2';
-import { MintLayout } from '@solana/spl-token';
-import Decimal from 'decimal.js';
+import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import {
+  Connection,
+  Keypair,
+  PublicKey,
+  TransactionMessage,
+  VersionedTransaction,
+} from "@solana/web3.js";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
+import { z } from "zod";
+import { BN } from "@coral-xyz/anchor";
+import {
+  CREATE_CPMM_POOL_FEE_ACC,
+  CREATE_CPMM_POOL_PROGRAM,
+  Raydium,
+  TxVersion,
+} from "@raydium-io/raydium-sdk-v2";
+import { MintLayout } from "@solana/spl-token";
+import Decimal from "decimal.js";
 
-const RaydiumCreateCpmmToolParams   = z.object({
+const RaydiumCreateCpmmToolParams = z.object({
   mintA: z.string(),
   mintB: z.string(),
   configId: z.string(),
@@ -22,8 +33,8 @@ export type RaydiumCreateCpmmToolParams = z.infer<
 >;
 
 export const RaydiumCreateCpmmTool = {
-  name: 'RAYDIUM_CREATE_CPMM',
-  description: 'Create CPMM pool',
+  name: "RAYDIUM_CREATE_CPMM",
+  description: "Create CPMM pool",
   parameters: {
     mintA: z.string(),
     mintB: z.string(),
@@ -45,7 +56,7 @@ export const RaydiumCreateCpmmTool = {
       new PublicKey(input.configId),
       new BN(input.mintAAmount),
       new BN(input.mintBAmount),
-      new BN(input.startTime),
+      new BN(input.startTime)
     );
   },
 };
@@ -58,7 +69,7 @@ export async function raydium_create_cpmm(
   configId: PublicKey,
   mintAAmount: BN,
   mintBAmount: BN,
-  startTime: BN,
+  startTime: BN
 ): Promise<{ txId: string }> {
   try {
     const raydium = await Raydium.load({
@@ -66,9 +77,10 @@ export async function raydium_create_cpmm(
       connection,
     });
 
-    const [mintInfoA, mintInfoB] = await connection.getMultipleAccountsInfo(
-      [mintA, mintB],
-    );
+    const [mintInfoA, mintInfoB] = await connection.getMultipleAccountsInfo([
+      mintA,
+      mintB,
+    ]);
     if (mintInfoA === null || mintInfoB === null) {
       throw Error("fetch mint info error");
     }
@@ -98,7 +110,6 @@ export async function raydium_create_cpmm(
       tags: [],
       extensions: {},
     };
-
 
     const response = await raydium.cpmm.createPool({
       programId: CREATE_CPMM_POOL_PROGRAM,

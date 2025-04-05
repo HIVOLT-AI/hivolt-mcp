@@ -1,10 +1,10 @@
 import { z } from "zod";
 import bs58 from "bs58";
 import { Connection, Keypair } from "@solana/web3.js";
-import { RPC_URL } from "src/constants/rpc";
-import { ENV } from "src/env";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { getTokenMetadata } from "src/helpers/solana";
+import { getTokenMetadata } from "../../helpers/solana";
 
 const SolanaGetOwnedTokenToolParams = z.object({});
 

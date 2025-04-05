@@ -1,14 +1,17 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { LuloCompleteWithdrawalBoostedOnlyTool, LuloCompleteWithdrawalBoostedOnlyToolParams } from "src/tools/lulo/completeWithdrawalBoostedOnly";
-import { LuloDepositTool, LuloDepositToolParams } from "src/tools/lulo/deposit";
-import { LuloGetAccountTool } from "src/tools/lulo/getAccount";
-import { LuloGetPoolsTool } from "src/tools/lulo/getPools";
-import { LuloGetRatesTool } from "src/tools/lulo/getRates";
-import { LuloInitiateWithdrawalBoostedOnlyToolParams } from "src/tools/lulo/initiateWithdrawalBoostedOnly";
-import { LuloInitiateWithdrawalBoostedOnlyTool } from "src/tools/lulo/initiateWithdrawalBoostedOnly";
-import { LuloListPendingWithdrawalsBoostedOnlyTool } from "src/tools/lulo/listPendingWithdrawalsBoostedOnly";
-import { LuloWithdrawProtectedTool } from "src/tools/lulo/withdrawProtected";
-import { LuloWithdrawProtectedToolParams } from "src/tools/lulo/withdrawProtected";
+import {
+  LuloCompleteWithdrawalBoostedOnlyTool,
+  LuloCompleteWithdrawalBoostedOnlyToolParams,
+} from "../tools/lulo/completeWithdrawalBoostedOnly";
+import { LuloDepositTool, LuloDepositToolParams } from "../tools/lulo/deposit";
+import { LuloGetAccountTool } from "../tools/lulo/getAccount";
+import { LuloGetPoolsTool } from "../tools/lulo/getPools";
+import { LuloGetRatesTool } from "../tools/lulo/getRates";
+import { LuloInitiateWithdrawalBoostedOnlyToolParams } from "../tools/lulo/initiateWithdrawalBoostedOnly";
+import { LuloInitiateWithdrawalBoostedOnlyTool } from "../tools/lulo/initiateWithdrawalBoostedOnly";
+import { LuloListPendingWithdrawalsBoostedOnlyTool } from "../tools/lulo/listPendingWithdrawalsBoostedOnly";
+import { LuloWithdrawProtectedTool } from "../tools/lulo/withdrawProtected";
+import { LuloWithdrawProtectedToolParams } from "../tools/lulo/withdrawProtected";
 
 export const createLuloMcpServer = () => {
   const server = new McpServer({
@@ -20,8 +23,12 @@ export const createLuloMcpServer = () => {
     LuloCompleteWithdrawalBoostedOnlyTool.name,
     LuloCompleteWithdrawalBoostedOnlyTool.description,
     LuloCompleteWithdrawalBoostedOnlyTool.parameters,
-    async ({ pendingWithdrawalId }: LuloCompleteWithdrawalBoostedOnlyToolParams) => {
-      const result = await LuloCompleteWithdrawalBoostedOnlyTool.execute({ pendingWithdrawalId });
+    async ({
+      pendingWithdrawalId,
+    }: LuloCompleteWithdrawalBoostedOnlyToolParams) => {
+      const result = await LuloCompleteWithdrawalBoostedOnlyTool.execute({
+        pendingWithdrawalId,
+      });
       return {
         content: [
           {
@@ -37,8 +44,16 @@ export const createLuloMcpServer = () => {
     LuloDepositTool.name,
     LuloDepositTool.description,
     LuloDepositTool.parameters,
-    async ({ mintAddress, protectedAmount, regularAmount }: LuloDepositToolParams) => {
-      const result = await LuloDepositTool.execute({ mintAddress, protectedAmount, regularAmount });
+    async ({
+      mintAddress,
+      protectedAmount,
+      regularAmount,
+    }: LuloDepositToolParams) => {
+      const result = await LuloDepositTool.execute({
+        mintAddress,
+        protectedAmount,
+        regularAmount,
+      });
       return {
         content: [
           {
@@ -105,8 +120,14 @@ export const createLuloMcpServer = () => {
     LuloInitiateWithdrawalBoostedOnlyTool.name,
     LuloInitiateWithdrawalBoostedOnlyTool.description,
     LuloInitiateWithdrawalBoostedOnlyTool.parameters,
-    async ({ mintAddress, amount }: LuloInitiateWithdrawalBoostedOnlyToolParams) => {
-      const result = await LuloInitiateWithdrawalBoostedOnlyTool.execute({ mintAddress, amount });
+    async ({
+      mintAddress,
+      amount,
+    }: LuloInitiateWithdrawalBoostedOnlyToolParams) => {
+      const result = await LuloInitiateWithdrawalBoostedOnlyTool.execute({
+        mintAddress,
+        amount,
+      });
       return {
         content: [
           {
@@ -140,7 +161,10 @@ export const createLuloMcpServer = () => {
     LuloWithdrawProtectedTool.description,
     LuloWithdrawProtectedTool.parameters,
     async ({ mintAddress, amount }: LuloWithdrawProtectedToolParams) => {
-      const result = await LuloWithdrawProtectedTool.execute({ mintAddress, amount });
+      const result = await LuloWithdrawProtectedTool.execute({
+        mintAddress,
+        amount,
+      });
       return {
         content: [
           {

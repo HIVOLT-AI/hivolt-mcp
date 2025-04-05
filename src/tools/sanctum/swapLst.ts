@@ -6,11 +6,11 @@ import {
   VersionedTransaction,
 } from "@solana/web3.js";
 import axios from "axios";
-import { SANCTUM_TRADE_API_URI } from "src/constants/sanctum";
+import { SANCTUM_TRADE_API_URI } from "../../constants/sanctum";
 import { z } from "zod";
 import bs58 from "bs58";
-import { ENV } from "src/env";
-import { RPC_URL } from "src/constants/rpc";
+import { ENV } from "../../env";
+import { RPC_URL } from "../../constants/rpc";
 
 const SanctumSwapLstToolParams = z.object({
   input: z.string(),

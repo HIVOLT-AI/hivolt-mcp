@@ -1,11 +1,11 @@
 import { z } from "zod";
 import bs58 from "bs58";
-import { ENV } from "src/env";
-import { RPC_URL } from "src/constants/rpc";
+import { ENV } from "../../env";
+import { RPC_URL } from "../../constants/rpc";
 import { Connection, Keypair } from "@solana/web3.js";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import axios from "axios";
-import { SANCTUM_STAT_API_URI } from "src/constants/sanctum";
+import { SANCTUM_STAT_API_URI } from "../../constants/sanctum";
 
 const SanctumGetOwnedLSTParams = z.object({});
 

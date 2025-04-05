@@ -1,6 +1,6 @@
 import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
 import axios from "axios";
-import { METEORA_DLMM_API_URI } from "src/constants/meteora";
+import { METEORA_DLMM_API_URI } from "../../constants/meteora";
 import { z } from "zod";
 
 const MeteoraGetDlmmPoolToolParams = z.object({
@@ -12,8 +12,8 @@ export type MeteoraGetDlmmPoolToolParams = z.infer<
 >;
 
 export const MeteoraGetDlmmPoolTool = {
-  name: 'METEORA_GET_DLMM_POOL',
-  description: 'Get DLMM pool',
+  name: "METEORA_GET_DLMM_POOL",
+  description: "Get DLMM pool",
   parameters: {
     poolAddress: z.string(),
   },
@@ -23,20 +23,18 @@ export const MeteoraGetDlmmPoolTool = {
 };
 
 export async function meteora_get_dlmm_pool(
-  poolAddress: string,
+  poolAddress: string
 ): Promise<DlmmPoolInfo> {
   try {
     const client = axios.create({
       baseURL: METEORA_DLMM_API_URI,
     });
 
-    const response = await client.get(`/pair/${poolAddress}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+    const response = await client.get(`/pair/${poolAddress}`, {
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+    });
     const result = response.data;
     return result;
   } catch (error: any) {
@@ -98,7 +96,7 @@ type DlmmPoolInfo = {
     hour_24: number;
   };
   tags: string[];
-}
+};
 
 // {
 //   "address": "5rCf1DM8LjKTw4YqhnoLcngyZYeNnQqztScTogYHAS6",

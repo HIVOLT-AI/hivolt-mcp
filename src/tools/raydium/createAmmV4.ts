@@ -1,18 +1,18 @@
-import { bs58 } from '@coral-xyz/anchor/dist/cjs/utils/bytes';
-import { Connection, Keypair, PublicKey, TransactionMessage, VersionedTransaction } from '@solana/web3.js';
-import { RPC_URL } from 'src/constants/rpc';
-import { ENV } from 'src/env';
-import { z } from 'zod';
-import { BN } from '@coral-xyz/anchor';
-import { Raydium, TxVersion } from '@raydium-io/raydium-sdk-v2';
+import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import { Connection, Keypair, PublicKey } from "@solana/web3.js";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
+import { z } from "zod";
+import { BN } from "@coral-xyz/anchor";
+import { Raydium, TxVersion } from "@raydium-io/raydium-sdk-v2";
 import {
   AMM_V4,
   FEE_DESTINATION_ID,
   MARKET_STATE_LAYOUT_V3,
   OPEN_BOOK_PROGRAM,
 } from "@raydium-io/raydium-sdk-v2";
-import { MintLayout } from '@solana/spl-token';
-import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { MintLayout } from "@solana/spl-token";
+import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 
 const RaydiumCreateAmmV4ToolParams = z.object({
   marketId: z.string(),
@@ -26,8 +26,8 @@ export type RaydiumCreateAmmV4ToolParams = z.infer<
 >;
 
 export const RaydiumCreateAmmV4Tool = {
-  name: 'RAYDIUM_CREATE_AMM_V4',
-  description: 'Create AMM V4 pool',
+  name: "RAYDIUM_CREATE_AMM_V4",
+  description: "Create AMM V4 pool",
   parameters: {
     marketId: z.string(),
     baseAmount: z.string(),
@@ -45,7 +45,7 @@ export const RaydiumCreateAmmV4Tool = {
       input.marketId,
       new BN(input.baseAmount),
       new BN(input.quoteAmount),
-      new BN(input.startTime),
+      new BN(input.startTime)
     );
   },
 };
@@ -56,7 +56,7 @@ export async function raydium_create_amm_v4(
   marketId: string,
   baseAmount: BN,
   quoteAmount: BN,
-  startTime: BN,
+  startTime: BN
 ): Promise<{ txId: string }> {
   try {
     const raydium = await Raydium.load({
@@ -65,10 +65,10 @@ export async function raydium_create_amm_v4(
     });
 
     const marketBufferInfo = await connection.getAccountInfo(
-      new PublicKey(marketId),
+      new PublicKey(marketId)
     );
     const { baseMint, quoteMint } = MARKET_STATE_LAYOUT_V3.decode(
-      marketBufferInfo!.data,
+      marketBufferInfo!.data
     );
 
     const baseMintInfo = await connection.getAccountInfo(baseMint);
@@ -79,7 +79,7 @@ export async function raydium_create_amm_v4(
       quoteMintInfo?.owner.toString() !== TOKEN_PROGRAM_ID.toBase58()
     ) {
       throw new Error(
-        "amm pools with openbook market only support TOKEN_PROGRAM_ID mints, if you want to create pool with token-2022, please create cpmm pool instead",
+        "amm pools with openbook market only support TOKEN_PROGRAM_ID mints, if you want to create pool with token-2022, please create cpmm pool instead"
       );
     }
     if (
@@ -88,11 +88,11 @@ export async function raydium_create_amm_v4(
         .lte(
           new BN(1)
             .mul(new BN(10 ** MintLayout.decode(baseMintInfo.data).decimals))
-            .pow(new BN(2)),
+            .pow(new BN(2))
         )
     ) {
       throw new Error(
-        "initial liquidity too low, try adding more baseAmount/quoteAmount",
+        "initial liquidity too low, try adding more baseAmount/quoteAmount"
       );
     }
 

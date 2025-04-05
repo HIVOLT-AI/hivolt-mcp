@@ -1,0 +1,1 @@
+{"version":3,"file":"removeLiquidity.d.ts","sourceRoot":"","sources":["../../../src/tools/sanctum/removeLiquidity.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,CAAC,EAAE,MAAM,KAAK,CAAC;AAcxB,QAAA,MAAM,gCAAgC;;;;;;;;;;;;;;;EAKpC,CAAC;AAEH,MAAM,MAAM,gCAAgC,GAAG,CAAC,CAAC,KAAK,CACpD,OAAO,gCAAgC,CACxC,CAAC;AAEF,eAAO,MAAM,0BAA0B;;;;;;;;;+DAelC,gCAAgC;CA+DpC,CAAC"}

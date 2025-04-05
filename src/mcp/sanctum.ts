@@ -1,26 +1,26 @@
-import { SanctumRemoveLiquidityToolParams } from "src/tools/sanctum/removeLiquidity";
+import { SanctumRemoveLiquidityToolParams } from "../tools/sanctum/removeLiquidity";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import {
   SanctumAddLiquidityTool,
   SanctumAddLiquidityToolParams,
-} from "src/tools/sanctum/addLiquidity";
+} from "../tools/sanctum/addLiquidity";
 import {
   SanctumGetApyTool,
   SanctumGetApyToolParams,
-} from "src/tools/sanctum/getApy";
+} from "../tools/sanctum/getApy";
 import {
   SanctumGetPriceTool,
   SanctumGetPriceToolParams,
-} from "src/tools/sanctum/getPrice";
+} from "../tools/sanctum/getPrice";
 import {
   SanctumGetTvlTool,
   SanctumGetTvlToolParams,
-} from "src/tools/sanctum/getTvl";
-import { SanctumRemoveLiquidityTool } from "src/tools/sanctum/removeLiquidity";
+} from "../tools/sanctum/getTvl";
+import { SanctumRemoveLiquidityTool } from "../tools/sanctum/removeLiquidity";
 import {
   SanctumGetOwnedLST,
   SanctumGetOwnedLSTParams,
-} from "src/tools/sanctum/getOwnedLst";
+} from "../tools/sanctum/getOwnedLst";
 
 export const createSanctumMcpServer = () => {
   const server = new McpServer({

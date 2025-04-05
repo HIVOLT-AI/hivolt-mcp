@@ -1,8 +1,8 @@
 import { z } from "zod";
 import bs58 from "bs58";
 import { Connection, Keypair } from "@solana/web3.js";
-import { RPC_URL } from "src/constants/rpc";
-import { ENV } from "src/env";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
 
 const SolanaGetBalanceToolParams = z.object({});
 

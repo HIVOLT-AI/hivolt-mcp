@@ -2,8 +2,8 @@ import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
 import DLMM, { PositionBinData } from "@meteora-ag/dlmm";
 import { Connection, Keypair } from "@solana/web3.js";
 import { PublicKey } from "@solana/web3.js";
-import { RPC_URL } from "src/constants/rpc";
-import { ENV } from "src/env";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
 import { z } from "zod";
 
 const MeteoraGetListOfPositionsToolParams = z.object({
@@ -15,8 +15,8 @@ export type MeteoraGetListOfPositionsToolParams = z.infer<
 >;
 
 export const MeteoraGetListOfPositionsTool = {
-  name: 'METEORA_GET_LIST_OF_POSITIONS',
-  description: 'Get list of positions',
+  name: "METEORA_GET_LIST_OF_POSITIONS",
+  description: "Get list of positions",
   parameters: {
     poolAddress: z.string(),
   },
@@ -25,14 +25,18 @@ export const MeteoraGetListOfPositionsTool = {
     const connection = new Connection(RPC_URL.HELIUS);
     const keypair = Keypair.fromSecretKey(secretKey);
 
-    return await meteora_get_list_of_positions(keypair, connection, input.poolAddress);
+    return await meteora_get_list_of_positions(
+      keypair,
+      connection,
+      input.poolAddress
+    );
   },
 };
 
 export async function meteora_get_list_of_positions(
   accountKeypair: Keypair,
   connection: Connection,
-  poolAddress: string,
+  poolAddress: string
 ): Promise<PositionBinData[]> {
   try {
     const pool = new PublicKey(poolAddress);

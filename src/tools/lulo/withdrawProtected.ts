@@ -1,10 +1,16 @@
-import { bs58 } from '@coral-xyz/anchor/dist/cjs/utils/bytes';
-import { Connection, Keypair, TransactionInstruction, TransactionMessage, VersionedTransaction } from '@solana/web3.js';
-import axios from 'axios';
-import { RPC_URL } from 'src/constants/rpc';
-import { ENV } from 'src/env';
-import { LULO_API_URI } from 'src/constants/lulo';
-import { z } from 'zod';
+import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import {
+  Connection,
+  Keypair,
+  TransactionInstruction,
+  TransactionMessage,
+  VersionedTransaction,
+} from "@solana/web3.js";
+import axios from "axios";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
+import { LULO_API_URI } from "../../constants/lulo";
+import { z } from "zod";
 
 const LuloWithdrawProtectedToolParams = z.object({
   mintAddress: z.string(),
@@ -16,8 +22,8 @@ export type LuloWithdrawProtectedToolParams = z.infer<
 >;
 
 export const LuloWithdrawProtectedTool = {
-  name: 'LULO_WITHDRAW_PROTECTED',
-  description: 'Withdraw USDC from protected Lulo',
+  name: "LULO_WITHDRAW_PROTECTED",
+  description: "Withdraw USDC from protected Lulo",
   parameters: {
     mintAddress: z.string(),
     amount: z.number(),
@@ -31,35 +37,37 @@ export const LuloWithdrawProtectedTool = {
       keypair,
       connection,
       input.mintAddress,
-      input.amount,
+      input.amount
     );
   },
 };
-
-
 
 export async function lulo_withdraw_protected(
   accountKeypair: Keypair,
   connection: Connection,
   mintAddress: string,
-  amount: number,
+  amount: number
 ): Promise<{ txId: string }> {
   try {
     const client = axios.create({
       baseURL: LULO_API_URI,
     });
-    const response = await client.post('/v1/generate.transactions.withdrawProtected?priorityFee=500000', {
-      owner: accountKeypair.publicKey.toBase58(),
-      mintAddress: mintAddress, // USDC: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
-      amount: amount,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': ENV.LULO_API_KEY ?? '',
+    const response = await client.post(
+      "/v1/generate.transactions.withdrawProtected?priorityFee=500000",
+      {
+        owner: accountKeypair.publicKey.toBase58(),
+        mintAddress: mintAddress, // USDC: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+        amount: amount,
       },
-    });
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": ENV.LULO_API_KEY ?? "",
+        },
+      }
+    );
 
-    const txBuffer = Buffer.from(response.data.trasnaction, 'base64');
+    const txBuffer = Buffer.from(response.data.trasnaction, "base64");
     const tx = VersionedTransaction.deserialize(txBuffer);
     const { blockhash } = await connection.getLatestBlockhash();
 
@@ -73,7 +81,7 @@ export async function lulo_withdraw_protected(
           isSigner: messages.isAccountSigner(i),
           isWritable: messages.isAccountWritable(i),
         })),
-        data: Buffer.from(ix.data as any, 'base64'),
+        data: Buffer.from(ix.data as any, "base64"),
       });
     });
 
@@ -93,6 +101,8 @@ export async function lulo_withdraw_protected(
 
     return { txId };
   } catch (error: any) {
-    throw new Error(`Failed to withdraw USDC from protected Lulo: ${error.message}`);
+    throw new Error(
+      `Failed to withdraw USDC from protected Lulo: ${error.message}`
+    );
   }
 }

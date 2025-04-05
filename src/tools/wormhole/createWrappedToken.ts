@@ -8,8 +8,8 @@ import {
 } from "@wormhole-foundation/sdk";
 import evm from "@wormhole-foundation/sdk/evm";
 import solana from "@wormhole-foundation/sdk/solana";
-import { ChainSchema, NetworkSchema } from "src/types/chain";
-import { getSigner, isTokenWrapped } from "src/helpers/wormhole";
+import { ChainSchema, NetworkSchema } from "../../types/chain";
+import { getSigner, isTokenWrapped } from "../../helpers/wormhole";
 
 const WormholeCreateWrappedTokenToolParams = z.object({
   destinationChain: ChainSchema,

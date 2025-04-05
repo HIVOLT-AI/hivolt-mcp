@@ -17,8 +17,8 @@ import {
   TransactionMessage,
   VersionedTransaction,
 } from "@solana/web3.js";
-import { RPC_URL } from "src/constants/rpc";
-import { ENV } from "src/env";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
 import { z } from "zod";
 import { Decimal } from "decimal.js";
 import { Percentage } from "@orca-so/common-sdk";

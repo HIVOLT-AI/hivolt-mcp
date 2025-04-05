@@ -1,0 +1,1 @@
+{"version":3,"file":"transferToken.d.ts","sourceRoot":"","sources":["../../../src/tools/wormhole/transferToken.ts"],"names":[],"mappings":"AAkBA,OAAO,EAAE,CAAC,EAAE,MAAM,KAAK,CAAC;AAExB,QAAA,MAAM,+BAA+B;;;;;;;;;;;;;;;EAKnC,CAAC;AAEH,MAAM,MAAM,+BAA+B,GAAG,CAAC,CAAC,KAAK,CACnD,OAAO,+BAA+B,CACvC,CAAC;AAEF,eAAO,MAAM,yBAAyB;;;;;;;;;qFAejC,+BAA+B;CAkH1B,CAAC"}

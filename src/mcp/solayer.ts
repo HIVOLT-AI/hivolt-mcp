@@ -1,6 +1,12 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { SolayerGetInfoTool } from "src/tools/solayer/getInfo";
-import { SolayerStakeWithSolayerTool, SolayerStakeWithSolayerToolParams } from "src/tools/solayer/stakeWithSolayer";
+import {
+  SolayerGetInfoTool,
+  //SolayerGetInfoToolParams,
+} from "../tools/solayer/getInfo";
+import {
+  SolayerStakeWithSolayerTool,
+  SolayerStakeWithSolayerToolParams,
+} from "../tools/solayer/stakeWithSolayer";
 
 export const createSolayerMcpServer = () => {
   const server = new McpServer({

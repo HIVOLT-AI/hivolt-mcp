@@ -1,11 +1,16 @@
-import { bs58 } from '@coral-xyz/anchor/dist/cjs/utils/bytes';
-import { Connection, Keypair, TransactionInstruction, TransactionMessage, VersionedTransaction } from '@solana/web3.js';
-import axios from 'axios';
-import { RPC_URL } from 'src/constants/rpc';
-import { ENV } from 'src/env';
-import { LULO_API_URI } from 'src/constants/lulo';
-import { z } from 'zod';
-
+import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import {
+  Connection,
+  Keypair,
+  TransactionInstruction,
+  TransactionMessage,
+  VersionedTransaction,
+} from "@solana/web3.js";
+import axios from "axios";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
+import { LULO_API_URI } from "../../constants/lulo";
+import { z } from "zod";
 
 const LuloCompleteWithdrawalBoostedOnlyToolParams = z.object({
   pendingWithdrawalId: z.number(),
@@ -16,8 +21,8 @@ export type LuloCompleteWithdrawalBoostedOnlyToolParams = z.infer<
 >;
 
 export const LuloCompleteWithdrawalBoostedOnlyTool = {
-  name: 'LULO_COMPLETE_WITHDRAWAL_BOOSTED_ONLY',
-  description: 'Complete withdrawal boosted only',
+  name: "LULO_COMPLETE_WITHDRAWAL_BOOSTED_ONLY",
+  description: "Complete withdrawal boosted only",
   parameters: {
     pendingWithdrawalId: z.number(),
   },
@@ -26,30 +31,38 @@ export const LuloCompleteWithdrawalBoostedOnlyTool = {
     const connection = new Connection(RPC_URL.HELIUS);
     const keypair = Keypair.fromSecretKey(secretKey);
 
-    return await lulo_complete_withdrawal_boosted_only(keypair, connection, input.pendingWithdrawalId);
+    return await lulo_complete_withdrawal_boosted_only(
+      keypair,
+      connection,
+      input.pendingWithdrawalId
+    );
   },
 };
 
 async function lulo_complete_withdrawal_boosted_only(
   accountKeypair: Keypair,
   connection: Connection,
-  pendingWithdrawalId: number,
+  pendingWithdrawalId: number
 ): Promise<{ txId: string }> {
   try {
     const client = axios.create({
       baseURL: LULO_API_URI,
     });
-    const response = await client.post('/v1/generate.transactions.completeRegularWithdrawal?priorityFee=500000', {
-      owner: accountKeypair.publicKey.toBase58(),
-      pendingWithdrawalId: pendingWithdrawalId,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': ENV.LULO_API_KEY,
+    const response = await client.post(
+      "/v1/generate.transactions.completeRegularWithdrawal?priorityFee=500000",
+      {
+        owner: accountKeypair.publicKey.toBase58(),
+        pendingWithdrawalId: pendingWithdrawalId,
       },
-    });
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": ENV.LULO_API_KEY,
+        },
+      }
+    );
 
-    const txBuffer = Buffer.from(response.data.trasnaction, 'base64');
+    const txBuffer = Buffer.from(response.data.trasnaction, "base64");
     const tx = VersionedTransaction.deserialize(txBuffer);
     const { blockhash } = await connection.getLatestBlockhash();
 
@@ -63,7 +76,7 @@ async function lulo_complete_withdrawal_boosted_only(
           isSigner: messages.isAccountSigner(i),
           isWritable: messages.isAccountWritable(i),
         })),
-        data: Buffer.from(ix.data as any, 'base64'),
+        data: Buffer.from(ix.data as any, "base64"),
       });
     });
 
@@ -83,6 +96,8 @@ async function lulo_complete_withdrawal_boosted_only(
 
     return { txId };
   } catch (error: any) {
-    throw new Error(`Failed to complete withdrawal boosted only: ${error.message}`);
+    throw new Error(
+      `Failed to complete withdrawal boosted only: ${error.message}`
+    );
   }
 }

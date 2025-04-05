@@ -1,6 +1,6 @@
 import { z } from "zod";
 import bs58 from "bs58";
-import { ENV } from "src/env";
+import { ENV } from "../../env";
 import {
   Connection,
   Keypair,
@@ -8,7 +8,7 @@ import {
   TransactionMessage,
   VersionedTransaction,
 } from "@solana/web3.js";
-import { RPC_URL } from "src/constants/rpc";
+import { RPC_URL } from "../../constants/rpc";
 import { Wallet } from "@coral-xyz/anchor";
 import {
   buildWhirlpoolClient,

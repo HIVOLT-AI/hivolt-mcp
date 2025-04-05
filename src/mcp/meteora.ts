@@ -1,10 +1,28 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { MeteoraClosePositionTool, MeteoraClosePositionToolParams } from "src/tools/meteora/closePosition";
-import { MeteoraCreateDlmmBalancePositionTool, MeteoraCreateDlmmBalancePositionToolParams } from "src/tools/meteora/createDlmmBalancePosition";
-import { MeteoraCreateDlmmImbalancePositionTool, MeteoraCreateDlmmImbalancePositionToolParams } from "src/tools/meteora/createDlmmImbalancePosition";
-import { MeteoraCreateDlmmOneSidePositionTool, MeteoraCreateDlmmOneSidePositionToolParams } from "src/tools/meteora/createDlmmOneSidePosition";
-import { MeteoraGetDlmmPoolTool, MeteoraGetDlmmPoolToolParams } from "src/tools/meteora/getDlmmPool";
-import { MeteoraGetListOfPositionsTool, MeteoraGetListOfPositionsToolParams } from "src/tools/meteora/getListOfPositions";
+import {
+  MeteoraClosePositionTool,
+  MeteoraClosePositionToolParams,
+} from "../tools/meteora/closePosition";
+import {
+  MeteoraCreateDlmmBalancePositionTool,
+  MeteoraCreateDlmmBalancePositionToolParams,
+} from "../tools/meteora/createDlmmBalancePosition";
+import {
+  MeteoraCreateDlmmImbalancePositionTool,
+  MeteoraCreateDlmmImbalancePositionToolParams,
+} from "../tools/meteora/createDlmmImbalancePosition";
+import {
+  MeteoraCreateDlmmOneSidePositionTool,
+  MeteoraCreateDlmmOneSidePositionToolParams,
+} from "../tools/meteora/createDlmmOneSidePosition";
+import {
+  MeteoraGetDlmmPoolTool,
+  MeteoraGetDlmmPoolToolParams,
+} from "../tools/meteora/getDlmmPool";
+import {
+  MeteoraGetListOfPositionsTool,
+  MeteoraGetListOfPositionsToolParams,
+} from "../tools/meteora/getListOfPositions";
 
 export const createMeteoraMcpServer = () => {
   const server = new McpServer({
@@ -16,8 +34,14 @@ export const createMeteoraMcpServer = () => {
     MeteoraClosePositionTool.name,
     MeteoraClosePositionTool.description,
     MeteoraClosePositionTool.parameters,
-    async ({ poolAddress, positionAddress }: MeteoraClosePositionToolParams) => {
-      const result = await MeteoraClosePositionTool.execute({ poolAddress, positionAddress });
+    async ({
+      poolAddress,
+      positionAddress,
+    }: MeteoraClosePositionToolParams) => {
+      const result = await MeteoraClosePositionTool.execute({
+        poolAddress,
+        positionAddress,
+      });
       return {
         content: [
           {
@@ -33,8 +57,16 @@ export const createMeteoraMcpServer = () => {
     MeteoraCreateDlmmBalancePositionTool.name,
     MeteoraCreateDlmmBalancePositionTool.description,
     MeteoraCreateDlmmBalancePositionTool.parameters,
-    async ({ poolAddress, tokenXMint, tokenXAmount }: MeteoraCreateDlmmBalancePositionToolParams) => {
-      const result = await MeteoraCreateDlmmBalancePositionTool.execute({ poolAddress, tokenXMint, tokenXAmount });
+    async ({
+      poolAddress,
+      tokenXMint,
+      tokenXAmount,
+    }: MeteoraCreateDlmmBalancePositionToolParams) => {
+      const result = await MeteoraCreateDlmmBalancePositionTool.execute({
+        poolAddress,
+        tokenXMint,
+        tokenXAmount,
+      });
       return {
         content: [
           {
@@ -50,10 +82,17 @@ export const createMeteoraMcpServer = () => {
     MeteoraCreateDlmmImbalancePositionTool.name,
     MeteoraCreateDlmmImbalancePositionTool.description,
     MeteoraCreateDlmmImbalancePositionTool.parameters,
-    async ({ poolAddress, tokenXMint, tokenXAmount, solAmount }
-      : MeteoraCreateDlmmImbalancePositionToolParams) => {
+    async ({
+      poolAddress,
+      tokenXMint,
+      tokenXAmount,
+      solAmount,
+    }: MeteoraCreateDlmmImbalancePositionToolParams) => {
       const result = await MeteoraCreateDlmmImbalancePositionTool.execute({
-        poolAddress, tokenXMint, tokenXAmount, solAmount,
+        poolAddress,
+        tokenXMint,
+        tokenXAmount,
+        solAmount,
       });
       return {
         content: [
@@ -70,8 +109,16 @@ export const createMeteoraMcpServer = () => {
     MeteoraCreateDlmmOneSidePositionTool.name,
     MeteoraCreateDlmmOneSidePositionTool.description,
     MeteoraCreateDlmmOneSidePositionTool.parameters,
-    async ({ poolAddress, tokenXMint, tokenXAmount }: MeteoraCreateDlmmOneSidePositionToolParams) => {
-      const result = await MeteoraCreateDlmmOneSidePositionTool.execute({ poolAddress, tokenXMint, tokenXAmount });
+    async ({
+      poolAddress,
+      tokenXMint,
+      tokenXAmount,
+    }: MeteoraCreateDlmmOneSidePositionToolParams) => {
+      const result = await MeteoraCreateDlmmOneSidePositionTool.execute({
+        poolAddress,
+        tokenXMint,
+        tokenXAmount,
+      });
       return {
         content: [
           {
@@ -105,7 +152,9 @@ export const createMeteoraMcpServer = () => {
     MeteoraGetListOfPositionsTool.description,
     MeteoraGetListOfPositionsTool.parameters,
     async ({ poolAddress }: MeteoraGetListOfPositionsToolParams) => {
-      const result = await MeteoraGetListOfPositionsTool.execute({ poolAddress });
+      const result = await MeteoraGetListOfPositionsTool.execute({
+        poolAddress,
+      });
       return {
         content: [
           {

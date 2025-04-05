@@ -1,11 +1,17 @@
-import { bs58 } from '@coral-xyz/anchor/dist/cjs/utils/bytes';
-import { Connection, Keypair, PublicKey, TransactionMessage, VersionedTransaction } from '@solana/web3.js';
-import { RPC_URL } from 'src/constants/rpc';
-import { ENV } from 'src/env';
-import { z } from 'zod';
-import DLMM, { autoFillYByStrategy, StrategyType } from '@meteora-ag/dlmm';
-import { getMint } from '@solana/spl-token';
-import { BN } from '@coral-xyz/anchor';
+import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import {
+  Connection,
+  Keypair,
+  PublicKey,
+  TransactionMessage,
+  VersionedTransaction,
+} from "@solana/web3.js";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
+import { z } from "zod";
+import DLMM, { autoFillYByStrategy, StrategyType } from "@meteora-ag/dlmm";
+import { getMint } from "@solana/spl-token";
+import { BN } from "@coral-xyz/anchor";
 
 const MeteoraCreateDlmmOneSidePositionToolParams = z.object({
   poolAddress: z.string(),
@@ -18,8 +24,8 @@ export type MeteoraCreateDlmmOneSidePositionToolParams = z.infer<
 >;
 
 export const MeteoraCreateDlmmOneSidePositionTool = {
-  name: 'METEORA_CREATE_DLMM_ONE_SIDE_POSITION',
-  description: 'Create DLMM one side position',
+  name: "METEORA_CREATE_DLMM_ONE_SIDE_POSITION",
+  description: "Create DLMM one side position",
   parameters: {
     poolAddress: z.string(),
     tokenXMint: z.string(),
@@ -35,7 +41,7 @@ export const MeteoraCreateDlmmOneSidePositionTool = {
       connection,
       input.poolAddress,
       input.tokenXMint,
-      input.tokenXAmount,
+      input.tokenXAmount
     );
   },
 };
@@ -45,7 +51,7 @@ export async function meteora_create_dlmm_one_side_position(
   connection: Connection,
   poolAddress: string,
   tokenXMint: string,
-  tokenXAmount: number,
+  tokenXAmount: number
 ): Promise<{ txId: string }> {
   try {
     const pool = new PublicKey(poolAddress);
@@ -97,7 +103,9 @@ export async function meteora_create_dlmm_one_side_position(
 
     return { txId };
   } catch (error: any) {
-    throw new Error(`Failed to create DLMM one side position: ${error.message}`);
+    throw new Error(
+      `Failed to create DLMM one side position: ${error.message}`
+    );
   }
 }
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SANCTUM_STAT_API_URI } from "src/constants/sanctum";
+import { SANCTUM_STAT_API_URI } from "../../constants/sanctum";
 import { z } from "zod";
 
 const SanctumGetApyToolParams = z.object({

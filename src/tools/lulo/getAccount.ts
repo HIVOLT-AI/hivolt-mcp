@@ -1,38 +1,37 @@
-import { bs58 } from '@coral-xyz/anchor/dist/cjs/utils/bytes';
-import { Keypair } from '@solana/web3.js';
-import axios from 'axios';
-import { ENV } from 'src/env';
-import { LULO_API_URI } from 'src/constants/lulo';
+import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import { Keypair } from "@solana/web3.js";
+import axios from "axios";
+import { ENV } from "../../env";
+import { LULO_API_URI } from "../../constants/lulo";
 
 export const LuloGetAccountTool = {
-  name: 'LULO_GET_ACCOUNT',
-  description: 'Get Lulo account information',
+  name: "LULO_GET_ACCOUNT",
+  description: "Get Lulo account information",
   parameters: {},
   execute: async () => {
     const secretKey = bs58.decode(ENV.SOLANA_ACCOUNT_PRIVATE_KEY);
     const keypair = Keypair.fromSecretKey(secretKey);
 
-    return await lulo_get_account(
-      keypair,
-    );
+    return await lulo_get_account(keypair);
   },
 };
 
 export async function lulo_get_account(
-  accountKeypair: Keypair,
+  accountKeypair: Keypair
 ): Promise<LuloAccountData> {
   try {
     const client = axios.create({
       baseURL: LULO_API_URI,
     });
 
-    const response = await client.get(`/v1/account.getAccount?owner=${accountKeypair.publicKey.toBase58()}`,
+    const response = await client.get(
+      `/v1/account.getAccount?owner=${accountKeypair.publicKey.toBase58()}`,
       {
         headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': ENV.LULO_API_KEY ?? '',
+          "Content-Type": "application/json",
+          "x-api-key": ENV.LULO_API_KEY ?? "",
         },
-      },
+      }
     );
 
     const result = response.data;

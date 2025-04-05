@@ -1,9 +1,15 @@
-import { bs58 } from '@coral-xyz/anchor/dist/cjs/utils/bytes';
-import { Connection, Keypair, PublicKey, TransactionMessage, VersionedTransaction } from '@solana/web3.js';
-import { RPC_URL } from 'src/constants/rpc';
-import { ENV } from 'src/env';
-import { z } from 'zod';
-import DLMM from '@meteora-ag/dlmm';
+import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import {
+  Connection,
+  Keypair,
+  PublicKey,
+  TransactionMessage,
+  VersionedTransaction,
+} from "@solana/web3.js";
+import { RPC_URL } from "../../constants/rpc";
+import { ENV } from "../../env";
+import { z } from "zod";
+import DLMM from "@meteora-ag/dlmm";
 
 const MeteoraClosePositionToolParams = z.object({
   poolAddress: z.string(),
@@ -15,8 +21,8 @@ export type MeteoraClosePositionToolParams = z.infer<
 >;
 
 export const MeteoraClosePositionTool = {
-  name: 'METEORA_CLOSE_POSITION',
-  description: 'Close DLMM position',
+  name: "METEORA_CLOSE_POSITION",
+  description: "Close DLMM position",
   parameters: {
     poolAddress: z.string(),
     positionAddress: z.string(),
@@ -30,7 +36,7 @@ export const MeteoraClosePositionTool = {
       keypair,
       connection,
       input.poolAddress,
-      input.positionAddress,
+      input.positionAddress
     );
   },
 };
@@ -39,7 +45,7 @@ export async function meteora_close_position(
   accountKeypair: Keypair,
   connection: Connection,
   poolAddress: string,
-  positionAddress: string,
+  positionAddress: string
 ): Promise<{ txId: string }> {
   try {
     const pool = new PublicKey(poolAddress);
