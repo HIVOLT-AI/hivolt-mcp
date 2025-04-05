@@ -31,7 +31,7 @@ export const ENV_SCHEMA = Joi.object({
 });
 
 export const ENV = cleanEnv(process.env, {
-  PORT: port({ default: 3000 }),
+  PORT: port({ default: 3001 }),
   MONGODB_URL: str(),
   MONGODB_PASSWORD: str(),
   MONGODB_USERNAME: str(),

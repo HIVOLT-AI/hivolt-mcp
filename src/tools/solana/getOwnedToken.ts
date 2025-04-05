@@ -15,9 +15,7 @@ export type SolanaGetOwnedTokenToolParams = z.infer<
 export const SolanaGetOwnedTokenTool = {
   name: "SOLANA_GET_OWNED_TOKEN",
   description: "Get the balance of a SPL token in the account",
-  parameters: {
-    tokenAddress: z.string(),
-  },
+  parameters: {},
   execute: async ({}: SolanaGetOwnedTokenToolParams) => {
     try {
       const secretKey = bs58.decode(ENV.SOLANA_ACCOUNT_PRIVATE_KEY);
