@@ -20,6 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // app.use("/sanctum", sanctum);
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.get("/sse/sanctum", (req, res) => {
   const server = createSanctumMcpServer();
   transport = new SSEServerTransport("/messages", res);
